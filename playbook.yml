@@ -1,9 +1,0 @@
----
-- name: WebServer Vagrant
-  hosts: Server
-  sudo: yes
-  tasks:
-    - name: Install
-      apt: pkg={{item}} state=latest update_cache=yes
-      with_items:
-      - mc

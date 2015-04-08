@@ -1,0 +1,4 @@
+---
+- name: Test Role
+  apt: pkg=mc
+  sudo: yes
