@@ -1,0 +1,16 @@
+---
+- name: Creates directory
+  sudo: yes
+  file: path=web state=directory
+  file: path=/web/www state=directory
+
+- name: Create User web
+  sudo: yes
+  user:
+    name=web
+    update_password=on_create
+    home=/web/www
+#    group=web
+
+- name: Set Chown /web
+  command: chown -R web:web /web

@@ -1,7 +1,17 @@
 ---
-- name: Init new Server
+- name: Init New Server
   hosts: Server
+  sudo: yes
+
+  vars:
+    locale: "en_US.UTF-8"
+
+  tasks:
+  - name: Update Locale
+    sudo: yes
+    command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}} LANGUAGE={{locale}} LC_TYPE={{locale}}
 
   roles:
+#    - upgrade
+#    - useradd
     - package
-    - test
