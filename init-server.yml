@@ -14,4 +14,5 @@
   roles:
 #    - upgrade
 #    - useradd
-    - package
+#    - package
+    - php-fpm

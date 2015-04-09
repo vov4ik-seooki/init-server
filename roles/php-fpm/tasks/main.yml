@@ -1,0 +1,25 @@
+---
+- name: FPM | Remove default pool.
+  file: >
+    path='/etc/php5/fpm/pool.d/www.conf'
+    state="absent"
+
+- name: Configurage php-fpm
+  sudo: yes
+  template: >
+    src="{{item.src}}"
+    dest="{{item.dest}}"
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+  - {src: nginx.j2, dest: '/etc/php5/mods-available/nginx.ini'}
+  - {src: php-override.j2, dest: '/etc/php5/mods-available/php-override.ini'}
+  - {src: www-conf.j2, dest: '/etc/php5/fpm/pool.d/www.conf'}
+
+- name: php5enmod
+  sudo: yes
+  command: php5enmod "{{item}}"
+  with_items:
+  - nginx
+  - php-override

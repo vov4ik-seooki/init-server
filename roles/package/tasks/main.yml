@@ -4,21 +4,21 @@
   apt: pkg="{{item}}"
     state=latest
   with_items:
-#    - nginx
+    - nginx
     - python-mysqldb
-#    - memcached
-#    - php5
-#    - php5-fpm
-#    - php5-cli
-#    - php5-curl
-#    - php5-mcrypt
-#    - php5-intl
-#    - php5-mysql
-#    - php5-memcache
-#    - php5-memcached
-#    - php5-gd
-#    - php-apc
-#    - git
+    - memcached
+    - php5
+    - php5-fpm
+    - php5-cli
+    - php5-curl
+    - php5-mcrypt
+    - php5-intl
+    - php5-mysql
+    - php5-memcache
+    - php5-memcached
+    - php5-gd
+    - php-apc
+    - git
   tags:
     - packages
 
@@ -33,30 +33,4 @@
 #  tags:
 #  - redis
 
-- name: Install Mysql
-  apt: pkg="{{item}}" state=installed update_cache=yes
-  sudo: yes
-  with_items:
-  - mysql-server-5.6
-
-- name: Start the MySQL service
-  sudo: yes
-  service:
-    name: mysql
-    state: started
-    enabled: true
-
-- name: update mysql root password for all root accounts
-  sudo: yes
-  mysql_user:
-    name: root
-    host: "{{ item }}"
-    password: "1234"
-    login_user: root
-    login_password: "1234"
-    check_implicit_admin: yes
-    priv: "*.*:ALL,GRANT"
-  with_items:
-    - 127.0.0.1
-    - ::1
-    - localhost
+#- include: mysql.yml
