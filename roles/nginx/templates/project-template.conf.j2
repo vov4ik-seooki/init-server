@@ -1,0 +1,47 @@
+#/etc/nginx/sites-available/project.tld
+
+##
+# For product environment uncomment "include expires.conf"
+##
+
+# frontend
+server {
+        server_name project.tld;
+        listen 80;
+
+        set           $host_path      /web/www/project.tld;
+
+        root          $host_path/html/frontend/web;
+
+        access_log    $host_path/log/access.log combined buffer=50k;
+        error_log     $host_path/log/error.log notice;
+
+        include yii-php-fpm.conf;
+
+        include cross-domain-fonts.conf;
+        include protect-system-files.conf;
+
+        # Uncomment this on product environment
+        #include expires.conf;
+}
+
+# backend
+server {
+        server_name backend.project.tld;
+        listen 80;
+
+        set           $host_path      /web/www/project.tld;
+
+        root          $host_path/html/backend/web;
+
+        access_log    $host_path/log/access.backend.log combined buffer=50k;
+        error_log     $host_path/log/error.backend.log notice;
+
+        include yii-php-fpm.conf;
+
+        include cross-domain-fonts.conf;
+        include protect-system-files.conf;
+
+        # Uncomment this on product environment
+        #include expires.conf;
+}

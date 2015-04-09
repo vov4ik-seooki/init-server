@@ -5,6 +5,7 @@
 
   vars:
     locale: "en_US.UTF-8"
+    default_user: web
 
   tasks:
   - name: Update Locale
@@ -12,7 +13,8 @@
     command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}} LANGUAGE={{locale}} LC_TYPE={{locale}}
 
   roles:
-#    - upgrade
-#    - useradd
-#    - package
+    - upgrade
+    - useradd
+    - package
     - php-fpm
+    - nginx

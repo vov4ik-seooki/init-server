@@ -1,0 +1,2 @@
+---
+- include: tasks/init-server.yml

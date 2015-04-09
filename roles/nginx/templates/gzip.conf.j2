@@ -1,0 +1,10 @@
+#/etc/nginx/conf.d/gzip.conf
+
+# Gzip Settings
+#gzip on;               # enabled by default
+#gzip_disable "msie6";  # enabled by default
+gzip_vary on;
+gzip_proxied any;
+gzip_comp_level 6;
+gzip_buffers 16 8k;
+gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;

@@ -22,15 +22,15 @@
   tags:
     - packages
 
-#- name: Redis (Optional)
-#  sudo : yes
-#  apt: pkg="{{item}}"
-#    state=latest
-#    update_cache=yes
-#  with_items:
-#  - redis-server
-#  - php5-redis
-#  tags:
-#  - redis
+- name: Redis (Optional)
+  sudo : yes
+  apt: pkg="{{item}}"
+    state=latest
+    update_cache=yes
+  with_items:
+  - redis-server
+  - php5-redis
+  tags:
+  - redis
 
 #- include: mysql.yml

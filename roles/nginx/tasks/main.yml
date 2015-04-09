@@ -1,0 +1,28 @@
+---
+- name: Delete default site
+  sudo: yes
+  file: >
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+
+- name: Add conf files to nginx
+  sudo: yes
+  template: >
+    src="{{item.src}}"
+    dest="{{item.dest}}"
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+  - {src: 'nginx.conf.j2', dest: '/etc/nginx/nginx.conf'}
+  - {src: 'charset.conf.j2', dest: '/etc/nginx/conf.d/charset.conf'}
+  - {src: 'cross-domain-fonts.conf.j2', dest: '/etc/nginx/cross-domain-fonts.conf'}
+  - {src: 'expires.conf.j2', dest: '/etc/nginx/expires.conf'}
+  - {src: 'gzip.conf.j2', dest: '/etc/nginx/conf.d/gzip.conf'}
+  - {src: 'protect-system-files.conf.j2', dest: '/etc/nginx/protect-system-files.conf'}
+  - {src: 'yii-php-fpm.conf.j2', dest: '/etc/nginx/yii-php-fpm.conf'}
+  - {src: 'project-template.conf.j2', dest: '/etc/nginx/sites-available/project-template.conf'}
+
+- name: Check config
+  sudo: yes
+  command: nginx -t
