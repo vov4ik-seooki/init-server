@@ -1,0 +1,21 @@
+---
+- name: Install XDebug
+  sudo: yes
+  apt: pkg="php5-xdebug" state=latest update_cache=yes
+
+- name: Clearing XDebug ini file
+  sudo: yes
+  shell: "> /etc/php5/mods-available/xdebug.ini"
+
+- name: Config xdebug for remote debugging
+  ini_file: dest=/etc/php5/mods-available/xdebug.ini section=XDEBUG option={{ item.option }} value={{ item.value }} state=present
+  sudo: yes
+  with_items:
+    - { option: "zend_extension", value: /usr/lib/php5/20121212/xdebug.so }
+    - { option: "xdebug.remote_port", value: 9000 }
+    - { option: "xdebug.remote_enable", value: On }
+    - { option: "xdebug.remote_connect_back", value: On }
+    - { option: "xdebug.remote_log", value: /var/log/xdebug.log }
+    - { option: "xdebug.remote_handler", value: dbgp }
+  notify:
+    - restart php5-fpm

@@ -1,9 +1,11 @@
 ---
 - name: Install Mysql
-  apt: pkg="{{item}}" state=installed update_cache=yes
+  apt: pkg="{{item}}" state=latest update_cache=yes
   sudo: yes
   with_items:
   - mysql-server-5.6
+  - php5-mysql
+
 
 - name: Start the MySQL service
   sudo: yes

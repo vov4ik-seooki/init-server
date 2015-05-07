@@ -13,25 +13,26 @@
     - php5-curl
     - php5-mcrypt
     - php5-intl
-    - php5-mysql
     - php5-memcache
     - php5-memcached
     - php5-gd
     - php-apc
     - git
+    - curl
+    - htop
   tags:
     - packages
 
-- name: Redis (Optional)
-  sudo : yes
-  apt: pkg="{{item}}"
-    state=latest
-    update_cache=yes
-  with_items:
-  - redis-server
-  - php5-redis
-  tags:
-  - redis
+#- name: Redis (Optional)
+#  sudo : yes
+#  apt: pkg="{{item}}"
+#    state=latest
+#    update_cache=yes
+#  with_items:
+#  - redis-server
+#  - php5-redis
+#  tags:
+#  - redis
 
 # mysql NOT WORK
-#- include: mysql.yml
+- include: mysql.yml

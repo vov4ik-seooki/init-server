@@ -1,4 +1,18 @@
 ---
-- name: Update and Upgrade
-  apt: update_cache=yes
-  apt: upgrade=full
+- name: Update Locale
+  sudo: yes
+  command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}} LANGUAGE={{locale}} LC_TYPE={{locale}}
+  command: dpkg-reconfigure locales
+#  command: export LC_ALL={{locale}}
+
+- name: Update
+  apt: >
+    update_cache=yes
+    state=latest
+#  command: apt-get update
+
+- name: Upgrade
+  apt: >
+    upgrade=full
+    state=latest
+#  command: apt-get upgrade
