@@ -6,6 +6,7 @@
 #  command: export LC_ALL={{locale}}
 
 - name: Update
+  sudo: yes
   apt: >
     update_cache=yes
     state=latest

@@ -1,4 +1,4 @@
-#/etc/nginx/sites-available/project.tld
+# /etc/nginx/sites-available/project.tld
 
 ##
 # For product environment uncomment "include expires.conf"
@@ -9,12 +9,10 @@ server {
         server_name project.tld;
         listen 80;
 
-        set           $host_path      /web/www/project.tld;
+        root          /{{default_user}}/www/{{default_project_name}}/html/frontend/web;
 
-        root          $host_path/html/frontend/web;
-
-        access_log    $host_path/log/access.log combined buffer=50k;
-        error_log     $host_path/log/error.log notice;
+        access_log    /{{default_user}}/www/{{default_project_name}}/log/access.log combined buffer=50k;
+        error_log     /{{default_user}}/www/{{default_project_name}}/log/error.log notice;
 
         include yii-php-fpm.conf;
 
@@ -30,12 +28,10 @@ server {
         server_name backend.project.tld;
         listen 80;
 
-        set           $host_path      /web/www/project.tld;
+        root          /{{default_user}}/www/{{default_project_name}}/backend/web;
 
-        root          $host_path/html/backend/web;
-
-        access_log    $host_path/log/access.backend.log combined buffer=50k;
-        error_log     $host_path/log/error.backend.log notice;
+        access_log    /{{default_user}}/www/{{default_project_name}}/log/access.backend.log combined buffer=50k;
+        error_log     /{{default_user}}/www/{{default_project_name}}/log/error.backend.log notice;
 
         include yii-php-fpm.conf;
 

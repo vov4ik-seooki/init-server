@@ -1,10 +1,11 @@
 ---
 - name: FPM | Remove default pool.
+  sudo: yes
   file: >
     path='/etc/php5/fpm/pool.d/www.conf'
     state=absent
 
-- name: Configurage php-fpm
+- name: Configurate php-fpm
   sudo: yes
   template: >
     src="{{item.src}}"

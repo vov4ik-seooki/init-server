@@ -1,16 +1,19 @@
 ---
-- name: Creates directory
+- name: Creates home directory
   sudo: yes
-  file: path=web state=directory
-  file: path=/web/www state=directory
+  command: mkdir -p /{{default_user}}/www/{{default_project_name}}/log
+#  file: path=/{{default_user}} state=directory
+#  file: path=/{{default_user}}/www state=directory
 
 - name: Create User web
   sudo: yes
   user:
-    name=web
-    update_password=on_create
-    home=/web/www
+    name={{default_user}}
+    home=/{{default_user}}/www
+    shell='/bin/bash'
+#    update_password=on_create
 #    group=web
 
-- name: Set Chown /web
-  command: chown -R web:web /web
+- name: Set Chown user
+  sudo: yes
+  command: chown -R {{default_user}}:{{default_user}} /{{default_user}}

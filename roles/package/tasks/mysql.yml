@@ -14,17 +14,17 @@
     state: started
     enabled: true
 
-- name: update mysql root password for all root accounts
-  sudo: yes
-  mysql_user:
-    name: root
-    host: "{{ item }}"
-    password: "1234"
-    login_user: root
-    login_password: "1234"
-    check_implicit_admin: yes
-    priv: "*.*:ALL,GRANT"
-  with_items:
-    - 127.0.0.1
-    - ::1
-    - localhost
+#- name: update mysql root password for all root accounts
+#  sudo: yes
+#  mysql_user:
+#    name: root
+#    host: "{{ item }}"
+#    password: "1234"
+#    login_user: root
+#    login_password: "1234"
+#    check_implicit_admin: yes
+#    priv: "*.*:ALL,GRANT"
+#  with_items:
+#    - 127.0.0.1
+#    - ::1
+#    - localhost
