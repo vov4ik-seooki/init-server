@@ -9,10 +9,10 @@
     default_project_name: project
 
   roles:
-#    - upgrade
-#    - useradd
-#    - package
-#    - php-fpm
-#    - nginx
+    - upgrade
+    - useradd
+    - package
+    - php-fpm
+    - nginx
     - composer
-#    - xdebug
+    - xdebug

@@ -13,6 +13,7 @@
 #  command: apt-get update
 
 - name: Upgrade
+  sudo: yes
   apt: >
     upgrade=full
     state=latest
