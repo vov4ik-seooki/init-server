@@ -6,13 +6,13 @@
 # Default Linux user
   vars:
     default_user: web
-    default_project_name: project
+    default_project_name: wowshot
 
   roles:
-    - upgrade
+#    - upgrade
     - useradd
     - package
     - php-fpm
     - nginx
     - composer
-    - xdebug
+#    - xdebug
